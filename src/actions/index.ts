@@ -6,6 +6,7 @@ const likeCountByPostId = new Map<string, number>();
 
 export const server = {
     like: defineAction({
+        accept:"form",
         input: z.object({
             postId: z.string().min(1)
         }),
