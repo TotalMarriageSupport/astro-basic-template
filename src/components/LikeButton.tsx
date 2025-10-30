@@ -9,7 +9,7 @@ type LikeButtonProps = {
 
 export default function LikeButton({ postId, initialLikes = 0 }: LikeButtonProps) {
     const [state, formAction, pending] = useActionState(
-        withState(actions.like),
+        withState(actions.like.step),
         { data: { likes: initialLikes }, error: undefined }
     );
 

@@ -5,17 +5,21 @@ import { z } from 'astro:schema';
 const likeCountByPostId = new Map<string, number>();
 
 export const server = {
-    like: defineAction({
-        accept:"form",
-        input: z.object({
-            postId: z.string().min(1)
-        }),
-        handler: async ({ postId }: { postId: string }) => {
-            const current = likeCountByPostId.get(postId) ?? 0;
-            const next = current + 1;
-            likeCountByPostId.set(postId, next);
-            return { likes: next };
-        }
-    })
+    like: 
+    {
+        step:    defineAction({
+            accept:"form",
+            input: z.object({
+                postId: z.string().min(1)
+            }),
+            handler: async ({ postId }: { postId: string }) => {
+                const current = likeCountByPostId.get(postId) ?? 0;
+                const next = current + 1;
+                likeCountByPostId.set(postId, next);
+                return { likes: next };
+            }
+        })
+    
+    }
 };
 
